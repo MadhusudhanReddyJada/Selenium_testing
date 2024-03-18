@@ -41,7 +41,7 @@ public class a1 {
 		Thread.sleep(2000);
 		
 		d.close();
-		 System.out.println("hi3");
+		// System.out.println("hi3");
 	}
 
 }
