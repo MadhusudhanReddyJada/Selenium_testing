@@ -1,0 +1,1535 @@
+selenium:
+overcome retesting and regression selenium was developed
+jason huggins
+selenium suite
+->ide
+->webdriver-----------
+->rc
+->grid
+
+
+webdriver-----------
+grid
+
+Advantages:
+-->any program
+-->any os
+-->open source
+-->cross browsing,prallel
+-->third party-------------------------
+
+->reports--testng
+->web--autoit
+->images--basic
+->reportcontactus -form
+
+
+*QTP--paid
+*Selenium--open
+
+-----------------------------------------------------
+selenium---jar files
+
+package automation;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class first {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://www.google.com");
+        driver.manage().window().maximize();
+        
+        
+        
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------
+locators:
+--------
+
+->id
+->name
+->linktext and partial link text
+->className
+->Tagname
+
+->CssSelector
+->xpath
+
+
+html-hyper textmarkup language
+
+<html>--tag
+<head>........</head>
+<body>
+<a><select><input><div><button id="b1" name="submit" class="....."              >
+id,name,class,text,------attribute or properties
+b1,submit--->VALUES
+-
+-
+</body>
+</html>
+
+<input type="text" data-val="true" data-val-required="First name is required." id="FirstName" name="FirstName">
+input--tag
+type,data-val,id,name---properties or attributes
+text,true,FirstName--values
+
+text.----------class or object
+text()---method
+
+..click()---element to click
+sendKeys("ete")---ete
+
+
+->cssSelector
+--------------
+1.tag and id----tag#id--input#FirstName
+driver.findElement(By.cssSelector("#FirstName")).
+
+2.tag and class-----tag.class----input.wishlist-label
+
+driver.findElement(By.cssSelector("input.FirstName")).
+
+3.tag and attribut-----tag[attribute="value"]
+input[id="FirstName"]
+driver.findElement(By.cssSelector("input[id=FirstName]")).
+
+4.tag ,class and attribur---tag.class[Attribute=value]
+input.class[attribut]
+
+webelements:
+1.textbox---sendKeys
+2.textarea--sendKeys
+3.radio--click
+4.checkbox-click
+5.dropdown-click-select
+6.listdown--click
+7.calender
+8.images--uplaod
+
+
+
+package automation;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class locators {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        WebDriver driver=new ChromeDriver(os);
+       /* driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
+        driver.manage().window().maximize();
+        driver.findElement(By.id("gender-male")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("FirstName")).sendKeys("firstname");
+        Thread.sleep(2000);
+        driver.findElement(By.name("LastName")).sendKeys("lastname");
+        Thread.sleep(2000);*/
+        driver.get("https://demo.nopcommerce.com/");
+     //   driver.findElement(By.linkText("Apple MacBook Pro 13-inch")).click();
+       // driver.findElement(By.partialLinkText("Apple ")).click();
+        driver.findElement(By.className("wishlist-label")).click();
+       int a= driver.findElements(By.tagName("div")).size();
+       System.out.println(a);
+        Thread.sleep(5000);
+       driver. close();
+        
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------xpath:extensable path.DOM(document object model structure)
+
+2 types:
+1.relative or full xpath--only tags or nodes--
+
+html/body/a/input/div(2)/button
+/html/body/form/table/tbody/tr[2]/td[2]/input
+
+/html/body/header/div/ /div[2]/div/input
+
+2.absolute or partial xpath--node and attribute-
+//tag[@att=val]
+
+//*
+///button[Attribut[
+
+//input[@name="password"]
+
+
+
+how:
+inspect--code highlight---rightclick-copy-fullxpath 
+
+chropath
+selector hub
+
+
+
+partial://tagname[@attribute=value]
+//a[@class="vlakv"]
+//*[@class="value"]
+
+driver.findElement(By.xpath("/html/body/header/div/div/div[2]/div/input")).sendKeys('search");
+
+--------------------------------------------------------------------------------------------------------------------------
+dropdown:
+<select name="DateOfBirthDay" class="valid" aria-invalid="false">
+<option value="0">Day</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+
+
+
+Select drp=new Select(drp1);
+
+-->drp.selectByValue("15");
+--drp.selectByIndex(15);
+--drp.selectByText("15");
+
+task:create a gmail account
+
+https://support.google.com/mail/answer/56256?hl=en
+
+--------------------------------------------------------------------------------------------------------------------------
+
+webdriver commands
+->browser commands
+->get commands
+->windows commands
+->wait
+->switchTo
+->navigate
+
+1.browser
+a.driver.close():close the current window
+b.driver.quit():close all the windows
+
+2.get commands
+a.driver.getTitle();
+b.driver.get("url");
+c.driver.getPageSource();
+d.driver.getCurrentURL();
+
+elements commands:
+ele.getText();
+ele.sendKeys("char");
+ele.click();
+ele.submit();
+ele.clear();
+ele.getCssvalue();
+ele.getSize();
+
+package automation;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class first {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+      
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://www.google.com");
+        driver.manage().window().maximize();
+        System.out.println(driver.getTitle());
+        //System.out.println(driver.getPageSource());
+        System.out.println(driver.getCurrentUrl());
+        driver.get("https://demo.opencart.com/index.php?route=common/home&language=en-gb");
+        WebElement ele=driver.findElement(By.name("search"));
+        ele.clear();
+        ele.sendKeys("first");
+       System.out.println( ele.getCssValue("height"));
+        System.out.println(ele.getTagName());
+      System.out.println( ele.getSize());
+      driver.close();
+
+	}
+
+}
+
+
+3.navigatecommands:
+
+a.driver.navigate().forward();
+b.naviagte.back();
+c.navigate.to();
+d.naviagate.refresh();
+
+package automation;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class navigate {
+
+	public static void main(String[] args) throws InterruptedException {
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://www.amazon.com");
+        driver.manage().window().maximize();
+        driver.navigate().to("https://www.snapdeal.com");//fast
+        Thread.sleep(3000);
+        
+        driver.navigate().back();//amazon
+        Thread.sleep(3000);
+        driver.navigate().forward();//snapdeal
+        Thread.sleep(3000);
+        driver.navigate().refresh();
+        
+        
+       
+
+	}
+
+}
+
+4.conditional commands://radio,checkbox,textbox
+a. ele.isDisplayed()--true or false---every display
+b. ele.isSelected()--true or false--check,radio
+c. ele.isEnabled()--trur or false--textbox,check,radio
+
+package automation;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class conditional {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+      
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
+        driver.manage().window().maximize();
+        WebElement ele=driver.findElement(By.id("gender-female"));
+        if((ele.isDisplayed()==true)&&(ele.isEnabled()==true))
+        {
+        	
+        if(ele.isSelected()==false)
+        	ele.click();
+        }
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Handle browser windows:
+----------------------
+
+driver.getWindowHandle():which will get id of the single browser window.return string
+   ex:driver.getWindowHandle();
+driver.getWindowHandles():which will get multiple id's of multiple browser windows
+  ex:driver.getWindowHandles();
+
+one to another to move our cursor
+driver.switchTo().window(String);
+
+package automation;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class window_handling {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://nxtgenaiacademy.com/multiplewindows/");
+        driver.manage().window().maximize();
+      //  System.out.println(driver.getWindowHandle());
+        driver.findElement(By.name("145newbrowsertab234")).click();
+        String childtitle="NxtGen A.I Academy â€“ Automate Intelligently";
+        Set<String> id=driver.getWindowHandles();//repeated delete
+        for(String window:id)
+        {
+        	String title=driver.switchTo().window(window).getTitle();
+        	System.out.println(driver.getWindowHandle());
+        	System.out.println(title);
+        	if(title.equals(childtitle))
+        	{
+        		System.out.println("child window");
+        		driver.findElement(By.xpath("//span[contains(text(),'Download Course Brochure')]")).click();
+        		Thread.sleep(6000);
+        	}
+        	else
+        	{
+        		System.out.println("parent window");
+        	}
+        }
+        
+        driver.quit();
+        
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------
+switch to alerts/pop-ups
+
+driver.switchTo.alert();
+
+driver.switchTo.alert().accept():closes alert box by click ok button
+driver.switchTo.alert().dismiss():closes alert box by click cancel button
+driver.switchTo.alert().sendKeys("aaaa"):enter the text in textbox which is present in alert box
+
+package automation;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class alerts {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+        driver.manage().window().maximize();
+        driver.findElement(By.xpath("//button[normalize-space()='Click for JS Alert']")).click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
+        driver.findElement(By.xpath("//button[normalize-space()='Click for JS Prompt']")).click();
+           driver.switchTo().alert().sendKeys("demo call");
+           Thread.sleep(2000);
+           driver.switchTo().alert().accept();
+	}
+
+}
+
+
+permission pop-up:until we cant close the permission popup we cant move to website we use options
+chrome--chromeOptions
+firefox---firefoxOptions
+
+package automation;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class pop_up {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        os.addArguments("--disable-notifications");
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://www.redbus.com");
+        driver.manage().window().maximize();
+        
+	}
+
+}
+
+
+
+keyboard actions:
+->Keypress
+->Keyup 
+
+package automation;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.*;
+
+public class keyboradactions1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+      
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://the-internet.herokuapp.com/key_presses?");
+        driver.manage().window().maximize();				
+        Actions act=new Actions(driver);
+        act.sendKeys(Keys.TAB).perform();
+        //act.sendKeys(Keys.ENTER).perform();
+        act.sendKeys("8").perform();
+      
+	}
+
+}
+
+
+synchronization problem automation:
+
+synchronization:
+---------------
+*when 2 or more components involved to perform any actions we 
+  expect these components to work together with the same space.the coordination 
+ between these components to run parallely is called synchronization.
+*here in selenium to synchronize between script execution and application
+ the automation script will run faster than application.so,that time when 
+ element search that particular element will not available.
+these 3 types are available
+1.implicit wait
+2.explicit wait
+3.fluent wait
+
+pageLoadTimeOut(Duration.ofSeconds(10));
+--Thread.sleep(MS) also avaiable but this actually defined from java.
+
+1.IMPLICIT WAIT:
+-->it is created before Driver Instance.so,it is applicable to all script
+-->it is global wait
+-->only created once and will stops when the driver is close or quit.
+-->maximun 10seconds time.if maximum of 10 seconds wait happen Exception will
+cover
+syntax:
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));/full
+
+15(text box)----------15 sleep-----------------30 lines
+
+package autoamtion;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class implicit_wait {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+	
+		WebDriver driver =new ChromeDriver(options);
+		driver.get("https://www.google.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		driver.manage().window().maximize();
+		WebElement search=driver.findElement(By.name("q"));
+		search.sendKeys("selenium");
+		search.sendKeys(Keys.RETURN);
+		driver.findElement(By.xpath("//h3[text()=\"Selenium\"]")).click();
+		
+		
+	}
+
+}
+
+
+2.explicit wait:
+-->element specific till certain condition is done.
+--> we should add multiple time for multiple elements
+-->create webdriverwait class
+
+WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));//call
+
+-->find element and check condition
+WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated
+                    (By.xpath("//h3[text()='Selenium']")));//
+package autoamtion;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class expicit_wait {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+	
+		WebDriver driver =new ChromeDriver(options);
+		driver.get("https://www.google.com");
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		driver.manage().window().maximize();
+		WebElement search=driver.findElement(By.name("q"));
+		search.sendKeys("selenium");
+		search.sendKeys(Keys.RETURN);
+		
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(2));
+		
+		WebElement ele=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()=\"Selenium\"]")));
+		ele.click();
+
+	}
+
+}
+
+
+3.fluent wait:
+--------------
+-->A fluentwait instance defines the maximum amount of time to wait for a condition
+   to take place,as well as the frequency with which to check the existence of
+   object conditions
+-->let us say we will have 60sec for an element to avaiable in page,
+  but we will check its available once in every 10 sec
+
+60sec..evry 10 sec..10sec..10sec...10sec...polling time
+-->also it is similar to webdriverwait with more flexibilty in polling time
+   and will ignore exception
+.
+ex:waiting 30 sec for an element and for its presence once every 5 sec
+
+*declaration
+Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+  .withTimeout(Duration.ofSeconds(30))
+  .pollingEvery(Duration.ofSeconds(5))
+  .ignoring(NoSuchElementException.class);
+
+*calling element
+
+WebElement foo = wait.until(new Function<WebDriver, WebElement>() {
+			  public WebElement apply(WebDriver driver) {
+			    return driver.findElement(By.xpath("//h3[text()='Selenium']"));
+			  }
+		});
+
+package autoamtion;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+import java.util.function.Function;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class fluent_wait {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+	
+		WebDriver driver =new ChromeDriver(options);
+		driver.get("https://www.google.com");
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		driver.manage().window().maximize();
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				  .withTimeout(Duration.ofSeconds(30))
+				  .pollingEvery(Duration.ofSeconds(5))
+				  .ignoring(NoSuchElementException.class);
+
+		WebElement search=driver.findElement(By.name("q"));
+		search.sendKeys("selenium");
+		search.sendKeys(Keys.RETURN);
+	
+		WebElement foo = wait.until(new Function<WebDriver, WebElement>() {
+			  public WebElement apply(WebDriver driver) {
+			    return driver.findElement(By.xpath("//h3[text()='Selenium']"));
+			  }
+		});
+
+		foo.click();
+
+	}
+
+}
+
+
+Mouse Actions:
+
+Action class:user Interactions API
+->moveOver--movetoelemnt
+->mouse rightclick--contectclick
+->draganddrop
+->slider
+->resizable--clickandHold,release
+
+ Actions act=new ACtions(driver);
+methods:
+-------
+1.clickAndHold():clicks without releasing at current mouse location
+
+2.contextClick():perform contextclick(right click)current mouse location
+
+3.doubleClick():performs a double-click at current mouse location
+
+4.dragAndDrop(Source,target):drap and drop from 1 one location to another location
+source:element to perform button down
+target:element to move to and release mouse at
+
+5.dragAndDrop(source,x-offset,y-offset)--scrolling
+
+6.moveToElement(toElement)-moves the mouse to the middle of element
+
+7.release():releases the depresses left mouse button at current mouse location
+package autoamtion;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.*;
+public class mouseevents_movetoElemnt {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		WebDriver driver =new ChromeDriver(options);
+		driver.get("https://jqueryui.com/");
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		WebElement contribute=driver.findElement(By.xpath("//*[text()=\"Contribute\"]"));
+		WebElement cla=driver.findElement(By.xpath("//*[text()=\"CLA\"]"));
+		WebElement styleguides=driver.findElement(By.xpath("//*[text()='Style Guides']"));
+		WebElement bug=driver.findElement(By.xpath("//*[text()=\"Bug Triage\"]"));
+		
+		Actions act=new Actions(driver);
+		//act.moveToElement(contribute).build().perform();
+		//act.moveToElement(cla).build().perform();
+		//act.moveToElement(styleguides).build().perform();
+		act.moveToElement(contribute).moveToElement(cla).moveToElement(styleguides).moveToElement(bug).click().build().perform();
+		
+
+
+	}
+
+}
+
+
+contextclik():
+----------------
+
+package autoamtion;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.*;
+public class context_click {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		WebDriver driver =new ChromeDriver(options);
+		driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html");
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		Actions action=new Actions(driver);
+WebElement ele=driver.findElement(By.xpath("//span[@class='context-menu-one btn btn-neutral']"));
+		action.contextClick(ele).build().perform();
+		
+	}
+
+}
+
+
+
+package autoamtion;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.*;
+public class slider {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+				WebDriver driver =new ChromeDriver(options);
+		driver.get("https://jqueryui.com/slider/");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		driver.switchTo().frame(0);
+		WebElement slide=driver.findElement(By.id("slider"));
+		Actions act=new Actions(driver);
+		//driver.switchTo().frame(0);
+		act.moveToElement(slide).dragAndDropBy(slide, 300, 0).build().perform();
+		
+	}
+
+}
+
+
+=============================================================================================================================
+
+screenshot-(memory)->file-->
+
+
+package autoamtion;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.io.FileHandler;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
+public class screenshot1 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+	
+		WebDriver driver =new ChromeDriver(options);
+		driver.get("https://demo.nopcommerce.com/");
+		//full screenshot
+		/*
+		TakesScreenshot ts=(TakesScreenshot)driver;	//screen to whole full
+		 File src=  ts.getScreenshotAs(OutputType.FILE);//capture and saves in this format
+		  File target=new File(".\\screenshot\\homepage1.png");
+		  FileHandler.copy(src,target);
+		*/
+		//of a section
+		WebElement sec=driver.findElement(By.xpath("//input[@id='small-searchterms']"));
+		File src1=  sec.getScreenshotAs(OutputType.FILE);//capture and saves in this format
+		  File target1=new File(".\\screenshot\\links.png");
+		  FileHandler.copy(src1,target1);
+		
+		 
+		
+	
+	}
+
+}
+
+
+Frames:
+a webpage which divided into different pages.or different pages will be added in 1 webpage is frames
+
+switch between the frames:
+
+1.driver.switchTo.frame(framename);
+2.driver.switchTo.frame(driver.findElement(By.xapth("..")));
+3.driver.switchTo.frame(indexnumber);
+
+driver.switchTo().defaultContent();w
+
+
+package fasttrack_11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class iframe {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+        
+        WebDriver driver=new ChromeDriver(os);
+        driver.get("https://demo.automationtesting.in/Frames.html");
+        driver.manage().window().maximize();
+        driver.switchTo().frame("SingleFrame");
+        driver.findElement(By.xpath("//input[@type='text']")).sendKeys("abc");
+        
+        
+       
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+frameworks:
+
+POM--page object model
+
+page:-----elements,method
+object:----call method
+
+POM
+
+page factory model
+
+@FindBy
+
+pageobjectmodel
+page factory
+testng
+datadriven
+cucumber
+
+package PFM;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class RegistrationPage {
+WebDriver driver;
+         By radioFemale = By.id("gender-female");
+         By fname=By.name("FirstName");
+         By lname=By.xpath("//input[@id='LastName']");
+         
+         RegistrationPage(WebDriver driver)
+         {
+        	 this.driver=driver;
+         }
+         public void clickradio()
+         {
+        	 driver.findElement(radioFemale).click();
+         }
+         public void enterfname(String ffname) {
+        	 driver.findElement(fname).sendKeys(ffname);
+         }
+         public void enterlname(String llname)
+         {
+        	 driver.findElement(lname).sendKeys(llname);
+         }
+}
+
+
+
+package POM;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class RegistartionTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver =new ChromeDriver();
+		driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		
+		RegistrationPage rp=new RegistrationPage(driver);
+		rp.clickradio();
+		rp.enterfname("first name need to enter");
+		rp.enterlname("last name need to enter");
+	}
+
+}
+
+
+--------------------------------------------------------------------------------------------------------------PFO:
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+package renu_trainig;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class javascriptscroll {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		//System.setProperty("webdriver.chrome.driver","C://Users//Anvika//Downloads//chromedriver_win32 (1)//chromedriver.exe");
+		ChromeOptions co=new ChromeOptions();
+		co.addArguments("--remote-allow-origins=*");
+		
+		WebDriver driver=new ChromeDriver(co);
+      driver.get("https://demo.nopcommerce.com/");
+      driver.manage().window().maximize();
+     Thread.sleep(3000);
+     JavascriptExecutor js=(JavascriptExecutor) driver;
+    
+     //certain pixcel
+  // js.executeScript("window.scrollBy(0,1000)","");
+   // finding element  
+     // WebElement flag=driver.findElement(By.xpath("//button[text()='Vote']"));//kenya
+     //js.executeScript("arguments[0].scrollIntoView()",flag);
+      //flag.click();
+      //scrolling down
+      //js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+	//alternate for click
+   // WebElement s=driver.findElement(By.xpath("//button[text()='Search']"));
+   // js.executeScript("arguments[0].click()",s);
+      js.executeScript("history.go(0)");//refresh
+      
+	}
+
+}
+
+=============================================================================================================================
+testNg:TestNG:--reports
+framework
+
+-->automation testing framework
+--->NG next generation
+-->itis an advance framework designed in a way which is helpful to
+both developers and also for testers
+
+features:
+-->it simplified the way the tests are coded.There is no need
+of static main methods to run or tests.
+-->support for annotations(@)
+-->using testng we can generate a proper report and can see 
+passes,failed or skipped test results
+-->testcase prioritization
+-->supports data driven testing using data provider
+-->same test case can be executed multiple times without any loop
+--cross browsing and parallel testing
+
+download and installation:
+-->eclipse--help--install new software or eclipse marketplace
+                               --testng(search)-install
+				
+-->maven--mvn repository--search for testng(copy)
+        --paste pom.xml
+		
+		            (or)
+		testng--jar files(download)--add in build path
+		
+		
+		
+		@BeforeSuite--once before all tests
+		{
+		-------
+		}
+		  @BeforeTest--run this method before any test
+              
+@Test
+@AfterTest--run after all tests completed
+
+
+
+suite--before,after
+class--before,after
+methods--before,after
+tests--before ,after
+@test			
+
+hirarchy of testng----
+-------------------
+@beforesuite
+@beforeTest
+@beforeclass
+@beforemethod
+  @Test
+@aftermethod
+
+@beforemethod
+@test1
+@aftermethod
+@afterTEst
+@afterSuite
+
+
+package Testng;
+
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Test1 {
+@BeforeSuite 
+public void before_suite()
+{
+	System.out.println("before suite");
+}
+@BeforeTest
+public void before_test()
+{
+	System.out.println("before test");
+}
+@BeforeClass
+public void before_class()
+{
+	System.out.println("before class");
+}
+@BeforeMethod
+public void before_method()
+{
+	System.out.println("before method");
+}
+@Test
+public void test()
+{
+	System.out.println("test");
+}
+@Test
+public void test1()
+{
+	System.out.println("test1");
+}
+@Test
+public void test2()
+{
+	System.out.println("test2");
+}
+@AfterMethod
+public void after_method()
+{
+	System.out.println("after method");
+}
+@AfterClass
+public void after_class()
+{
+	System.out.println("after class");
+}
+@AfterTest
+public void after_test()
+{
+	System.out.println("after test");
+}
+@AfterSuite
+public void after_suite()
+{
+	System.out.println("after suite");
+}
+
+}
+
+
+Assertion:it determines the state of the application whether it
+is the same what we are expecting or not
+-->compare the actual result to expected result
+1.Hard assertion--inbuild
+2.Soft assertion
+
+syntax"
+Assert.Method(actual,expected)
+ex:Assert.assertEquals(actualtitle,expectedtitle)
+
+use message as paramters
+ syntax:
+ Assert.Methods(actual,expectd,message)
+ ex:
+Assert.assertEquals(actualtitle,expectedtitle,"title is not match");
+
+Hard asserts:if assert fails then stops the execution.default
+ex:login
+
+Softassert:opposite hard asserts.if assert fails it wont stops
+the execution.we need to include org.testng.asserts.Softassert
+ex:Softassert s=new Softassert();
+s.equals("orginal,expected");
+
+Methods:assert fails expection will throw
+1.Assert.assertEquals(String actual,String expected)
+2.Assert.assertEquals(String actual,String expected,message)
+3.Assert.assertEquals(boolean Actual,boolean expected)
+4.Assert.assertTrue(condition)--checks condition is true or not
+5.Assert.assertFalse(condition)
+6.Assert.assertTrue(condition,message)
+7.Assert.assertFalse(condition,message)
+8. static void assertEquals(object actual,object expeected,String msg)
+   --Asserts whether the 2 objects passwd are equals or not
+9.public static void assertEquals(String actual,String expeected,String msg)
+  --Asserts whether 2 strings are equal or not
+10.assert.assertNull()
+11.assert.assertNotNull()
+
+
+
+
+Attributes:
+1.priority
+2.dependsOnMethods
+3.dependsOnGroups
+4.@ignore
+5.isEnabled=false
+6.description
+7.alwaysRun=true
+
+
+
+package Testng;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class first {
+WebDriver driver;
+	
+		@BeforeClass
+		public void intialising()
+		{
+		ChromeOptions os=new ChromeOptions();
+        os.addArguments("--remote-allow-origins=*");
+         driver=new ChromeDriver(os);
+		driver.get("https://demo.opencart.com/index.php?route=common/home&language=en-gb");
+        driver.manage().window().maximize();
+		}
+      
+		@Test(dependsOnMethods= {"getElements1"})
+        public void getElements()
+        {
+		WebElement ele=driver.findElement(By.name("search"));
+        ele.clear();
+        ele.sendKeys("first");
+        }
+     
+	@Test(priority=1,description="prioriyttest")
+     public void getElements1()
+     {
+    	 WebElement ele=driver.findElement(By.name("search"));
+    	 System.out.println( ele.getCssValue("height"));
+        System.out.println(ele.getTagName());//input
+        String actualtag=ele.getTagName();
+        String expectedtag="input1";
+       // Assert.assertEquals(expectedtag,actualtag,"comparsion fail");//hard assert
+        //SoftAssert s=new SoftAssert();
+        //s.assertEquals(expectedtag,actualtag);
+        Assert.assertFalse(actualtag.equals(expectedtag));
+      System.out.println( ele.getSize());
+        }
+     
+        @AfterClass
+        public void teardown()
+        {
+        	
+      driver.close();
+        }
+       
+        
+        
+        
+
+	}
+
+crossbroswer testing:
+package Testng;
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class crossbrowser {
+	WebDriver driver;
+@Parameters("browser")
+@Test
+public void launchApp(String browser) {
+if(browser.equalsIgnoreCase("chrome")) {
+	ChromeOptions co=new ChromeOptions();
+	co.addArguments("--remote-allow-origins=*");
+	 driver=new ChromeDriver(co);
+	
+}
+else if(browser.equalsIgnoreCase("firefox")) {
+	FirefoxOptions fo=new FirefoxOptions();
+	fo.addArguments("--remote-allow-origins=*");
+	driver=new FirefoxDriver(fo);
+
+}
+driver.get("https://www.google.com");
+}
+}
+
+testng.xml
+-------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	
+  <test thread-count="5" name="Test">
+	  <parameter name="browser" value="firefox"></parameter>
+	  <classes >
+		  <class name="Testng.crossbrowser">
+			  
+		  </class>
+		  
+	  </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+parallel testing:
+----------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Suite">
+  <test thread-count="5" parallel="tests" name="ChromeTest">
+	  <parameter name="browser" value="chrome"></parameter>
+	  <classes>
+	  <class name="Testng.crossbrowser"></class>
+	  </classes>
+  </test> <!-- Test -->
+   <test thread-count="5" parallel="tests" name="FirefoxTest">
+	  <parameter name="browser" value="firefox"></parameter>
+	  <classes>
+	  <class name="Testng.crossbrowser"></class>
+	  </classes>
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->
+
+
+crossbrowser:
+package Testng;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+
+public class dataprovidertest1 {
+WebDriver driver;
+@BeforeClass
+public void setup()
+{
+	
+	ChromeOptions co=new ChromeOptions();
+	co.addArguments("--remote-allow-origins=*");
+	 driver=new ChromeDriver(co);
+	driver.get("https://demo.guru99.com/V1/index.php");
+	driver.manage().window().maximize();
+
+	
+}
+@Test(dataProvider="Login")
+public void LoginBank(String user,String pswrd)
+{
+	
+	WebElement userid=driver.findElement(By.name("uid"));
+	userid.clear();
+	userid.sendKeys(user);
+	driver.findElement(By.name("password")).sendKeys(pswrd);
+	driver.findElement(By.name("btnLogin")).click();
+			
+}
+
+@DataProvider(name="Login")
+public String[][] getData()
+{
+	String loginData[][]= {{"mngr478568","UpYsugY"},
+			{"mngr","UpYsugY"},
+			{"mngr478568","up"},
+			{"mngr","up"}
+	};
+return loginData;	
+}
+
+@AfterClass
+public void teardown()
+{
+	driver.close();
+}
+}
+=============================================================================================================================
+                           cucumber
+
+BDD framework:behaviour --manual testcases---features--jar files
+TDD ---code
+
+pom.xml
+->selenium
+->webdrivermanager
+->cucumerb-java
+->cucumber-core
+->cucumber-junit
+->junit
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cucumber_framework</groupId>
+  <artifactId>cucumber_framework</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.10.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.3.3</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>7.12.1</version>
+    <scope>test</scope>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>7.12.1</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-core</artifactId>
+    <version>7.12.1</version>
+</dependency>
+
+
+
+</dependencies>
+</project>
+
+
+
+TDD-test driven developement
+BDD-behaviour driven development
+
+TDD-test
+POM
+util
+Testcase
+reports
+
+-->testcases and develop testng
+
+--only technical persons                 non-technical persons
+--only testing team                      basically used to acceptance tstcase
+--productowner and customers              business peopleand product owner used this testcases
+
+cant understand
+--used for functional testcases            it is used to fill gap between technical and non technical
+
+CUCUMBER:it is tool which is avialable in market like open source
+by which we can implement testcases by using BDD approach
+
+selenium cucumber:
+intellij or eclipse
+maven
+
+
+Step 1 - Create a new maven project
+Step 2 - Add maven dependencies
+  Cucumber Java | Cucumber JUnit | JUnit | Selenium Java
+Step 3 - Create a folder Features under src/test/resources
+Step 4 - Under features folder create a new feature file login.feature
+Step 5 - Download cucumber plugin from Eclipse Marketplace
+Step 6 - Create feature file and add contents
+Feature--list of scenarios
+Scenario--list of steps
+Steps--what we do
+Scenario Outline--
+Example---
+Tags
+Comments
+Step 7 - Try to run the feature file
+Step 8 - Add Step Definitions / Glue Code under src/test/java package
+Step 9 - Create a Runner class
+
+import org.junit.runner.RunWith;   
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;  
+
+@RunWith(Cucumber.class) 
+@CucumberOptions(features="src/test/resources/Features",
+glue={"StepDefinitions"})
+public class TestRunner {
+}
+
+monochrome = true
+
+plugin = { "pretty", "html:target/reports"}
+plugin = { "pretty", "json:target/reports/cucumber.json"}
+plugin = { "pretty",  "junit:target/reports/cucumber.xml"}
+
+tags="@smoketest"
+
+Step 10 - Create Add Cucumber Options for generating reports
+   HTML | JSON | JUNIT/XML   
+Step 11 - Run and verify results
+=============================================================================================================================
+
